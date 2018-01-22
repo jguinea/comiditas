@@ -35,8 +35,7 @@ const config = {
       {
         enforce: "pre",
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
+        exclude: /node_modules/
       },
       {
         test: /\.js$/,
@@ -132,10 +131,6 @@ const config = {
     new webpack.LoaderOptionsPlugin({
       test: /\.js$/,
       options: {
-        eslint: {
-          configFile: resolve(__dirname, '.eslintrc'),
-          cache: false,
-        }
       },
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
