@@ -2,9 +2,16 @@
 
 Planificador de comidas web
 
-## Otras Vainas
+## Estado del proyecto
 
-Aquí explicaré de que va la vaina y sus sub-vainas cuando tenga ganas
+To do:
+
+*  Funcionalidad de selección
+*  Generador de la lista de la compra
+*  BBDD
+*  Perfiles
+*  Creación de platos
+
 
 ### Créditos
 
