@@ -8,6 +8,10 @@ export default class Calendar extends React . Component {
     }
 
     render() {
+        function eleccion(nombre) {
+            document.getElementsByClassName("comida").value = nombre;
+            console.log(nombre);
+        }
         function eligeComida(tiempo) {
             switch (tiempo){
                 case 1:
@@ -18,13 +22,17 @@ export default class Calendar extends React . Component {
                     return null;
             }
         }
+        function creaDropdown(recetas) {
+            console.log("llega a crear la vaina")
+            return (recetas.map((receta)=>(
+                <button onClick={function() { eleccion(receta.name) }} className="w3-bar-item w3-button">{receta.name}</button>
+            )))
+        }
         return (
             <div className="w3-dropdown-hover">
-                <span>{eligeComida(this.props.tiempoComida)}</span>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <a href="#" class="w3-bar-item w3-button">Pollito</a>
-                    <a href="#" class="w3-bar-item w3-button">Toritilla</a>
-                    <a href="#" class="w3-bar-item w3-button">Puré</a>
+                <span className="comida">{eligeComida(this.props.tiempoComida)}</span>
+                <div className="w3-dropdown-content w3-bar-block w3-card-4">
+                    {creaDropdown(this.props.recetas)}
                 </div>
             </div>
         );

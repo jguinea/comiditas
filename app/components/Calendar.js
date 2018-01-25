@@ -5,36 +5,32 @@ import RecepeSelector from "./RecepeSelector"
 export default class Calendar extends React . Component {
     constructor(props) {
         super(props);
-        this.selector = this.selector.bind(this)
     }
-    selector(dias) {
-        this.props.action(dias);
-    }
-
     render() {
+        let recetas = this.props.recetas;
         function getCelda (dia, celda){
             switch (celda){
                 case 0:
                     return  (
-                      <th className="w3-blue">
+                      <th key={dia+celda} className="w3-blue">
                           {dia}
                       </th>
                     );
                 case 1:
                     return (
-                        <th style={{height: "200px", backgroundColor: "#E0FFFF"}} >
+                        <th key={dia+celda} style={{height: "200px", backgroundColor: "#ADD8E6"}} >
                             <div style={{height: "35%"}}/>
-                            <div className="w3-dropdown-hover">
-                                <RecepeSelector tiempoComida = {celda}/>
+                            <div className="w3-dropdown-hover invisible">
+                                <RecepeSelector tiempoComida = {celda} recetas = {recetas}/>
                             </div>
                         </th>
                     );
                 default:
                     return (
-                        <th style={{height: "200px", backgroundColor: "#ADD8E6"}} >
+                        <th key={dia+celda} style={{height: "200px", backgroundColor: "#E0FFFF"}} >
                             <div style={{height: "35%"}}/>
                             <div className="w3-dropdown-hover">
-                                <RecepeSelector tiempoComida = {celda}/>
+                                <RecepeSelector tiempoComida = {celda} recetas = {recetas}/>
                             </div>
                         </th>
                     );
@@ -56,7 +52,9 @@ export default class Calendar extends React . Component {
         }
         return (
             <table style={{width: "100%"}} className="w3-table w3-blue-gray">
+                <tbody>
                 {getTabla()}
+                </tbody>
             </table>
         );
     }
