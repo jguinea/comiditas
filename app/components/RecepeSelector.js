@@ -5,33 +5,42 @@ import RecepeSelector from "./RecepeSelector"
 export default class Calendar extends React . Component {
     constructor(props) {
         super(props);
+        this.eleccion = null;
+    }
+    componentDidMount() {
+        this.eleccion = this.props.tiempoComida;
+        console.log(this.eleccion);
+        this.forceUpdate();
     }
 
     render() {
-        function eleccion(nombre) {
-            document.getElementsByClassName("comida").value = nombre;
-            console.log(nombre);
-        }
-        function eligeComida(tiempo) {
-            switch (tiempo){
+        function nombreComida(tiempo) {
+            switch (tiempo) {
                 case 1:
                     return "Comida";
                 case 2:
                     return "Cena";
                 default:
-                    return null;
+                    return tiempo;
+
             }
         }
+        let theThis = this;
+        function eligeComida(nombre) {
+            theThis.eleccion = nombre;
+            theThis.props.accion(nombre);
+            theThis.forceUpdate();
+        }
         function creaDropdown(recetas) {
-            console.log("llega a crear la vaina")
             return (recetas.map((receta)=>(
-                <button onClick={function() { eleccion(receta.name) }} className="w3-bar-item w3-button">{receta.name}</button>
+                <button onClick={function() { eligeComida(receta.name) }} className="w3-bar-item w3-button">{receta.name}</button>
             )))
         }
+        let nombreSelector = "w3-dropdown-content w3-bar-block w3-card-4";
         return (
             <div className="w3-dropdown-hover">
-                <span className="comida">{eligeComida(this.props.tiempoComida)}</span>
-                <div className="w3-dropdown-content w3-bar-block w3-card-4">
+                <span className="comida">{nombreComida(this.eleccion)}</span>
+                <div className= {nombreSelector}>
                     {creaDropdown(this.props.recetas)}
                 </div>
             </div>

@@ -6,8 +6,10 @@ export default class Calendar extends React . Component {
     constructor(props) {
         super(props);
     }
+
     render() {
         let recetas = this.props.recetas;
+        let theThis = this;
         function getCelda (dia, celda){
             switch (celda){
                 case 0:
@@ -20,8 +22,8 @@ export default class Calendar extends React . Component {
                     return (
                         <th key={dia+celda} style={{height: "200px", backgroundColor: "#ADD8E6"}} >
                             <div style={{height: "35%"}}/>
-                            <div className="w3-dropdown-hover invisible">
-                                <RecepeSelector tiempoComida = {celda} recetas = {recetas}/>
+                            <div className="w3-dropdown-hover">
+                                <RecepeSelector tiempoComida = {celda} recetas = {recetas} accion = {theThis.props.accion}/>
                             </div>
                         </th>
                     );
@@ -30,7 +32,7 @@ export default class Calendar extends React . Component {
                         <th key={dia+celda} style={{height: "200px", backgroundColor: "#E0FFFF"}} >
                             <div style={{height: "35%"}}/>
                             <div className="w3-dropdown-hover">
-                                <RecepeSelector tiempoComida = {celda} recetas = {recetas}/>
+                                <RecepeSelector tiempoComida = {celda} recetas = {recetas} accion = {theThis.props.accion}/>
                             </div>
                         </th>
                     );

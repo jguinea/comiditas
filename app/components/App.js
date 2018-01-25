@@ -8,10 +8,14 @@ class App extends React.Component {
         super();
         this.state = {
             comidas: comidas,
+            eleccion: null,
         };
-
+        this.haElegido = this.haElegido.bind(this);
     }
 
+    haElegido(eleccion){
+        this.eleccion = eleccion;
+    }
 
     render() {
         return (
@@ -19,7 +23,7 @@ class App extends React.Component {
                 <div className="w3-center w3-container">
                     <h1 style={{fontWeight: "bold"}} >Comiditas</h1>
                 </div>
-                <Calendar recetas = {this.state.comidas}/>
+                <Calendar recetas = {this.state.comidas} accion = {this.haElegido}/>
             </div>
         );
     }

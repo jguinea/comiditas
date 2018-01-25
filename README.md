@@ -13,7 +13,7 @@ To do:
 *  Creación de platos
 
 
-### Créditos
+## Créditos
 
 CSS:
 
