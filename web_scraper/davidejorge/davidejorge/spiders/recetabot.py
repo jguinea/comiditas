@@ -7,13 +7,20 @@ class RecetabotSpider(CrawlSpider):
     name = 'recetabot'
     allowed_domains = ['blog.daviddejorge.com/']
     start_urls = ['http://blog.daviddejorge.com/2016/07/22/recetas-expres-pollo-frito-guarripe/']
-    recetas = []
+    nombres = []
+    procedimientos = []
+    ingredientes = []
     def parse(self,response):
         soup = BeautifulSoup(response.text, 'lxml')
-        articulo = soup.find('article')
+        articulo = soup.findAll("div", {"class": "entry-content"})
+        articulo = articulo[0]
         children = articulo.findChildren()
+        print(articulo)
         lastChild = None
+        print('\n Fin artículo \n')
         for child in children:
-            if (child.name == "strong") or ((child.name == "h3") and (child['class']!=["sd-title"])):
-                self.recetas.append({'name': child.text})
-        
+            if (child.name == "strong") or ((child.name == "h3") and (child['class']!=["entry-content"])):
+                self.recetas.append(child.text)
+            print '\n'+child.name 
+            print child
+            lastChild = child
