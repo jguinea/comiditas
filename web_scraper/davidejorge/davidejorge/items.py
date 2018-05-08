@@ -10,5 +10,6 @@ import scrapy
 
 class DavidejorgeItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    nombre = scrapy.Field()
+    ingredientes = scrapy.Field()
+    procedimiento = scrapy.Field()
